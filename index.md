@@ -15,7 +15,7 @@ Part 2:
 
 In the code given as a part of lab 3, there were plenty of methods that had bugs in them. I chose to examine the reverseInPlace method in ArrayExamples.java. A failure-inducing input for the buggy program is provides in the code written below. 
 
-```json
+```
 
 public void testReverseInPlace() {
     int[] input1 = { 1, 2, 3 , 4, 5 };
@@ -26,7 +26,7 @@ public void testReverseInPlace() {
 ```
 
 The result of this program would be {5, 4, 3, 4, 5}. However, this code can work for certain inputs. The following code is an example:
-```json
+```
 
 public void testReverseInPlace2() {
     int[] input1 = {1};
@@ -40,7 +40,7 @@ The symptom, as the output of running the tests is shown in the screenshot below
 
 In order to fix this problem I had to edit the method to properlly run store the entire list. The incorrect code is first provided and then the correct code is given. 
 
-```json
+```
 
 static void reverseInPlace(int[] arr) {
     for(int i = 0; i < arr.length; i += 1) {
@@ -50,7 +50,7 @@ static void reverseInPlace(int[] arr) {
 
 ```
 
-```json
+```
 
 static void reverseInPlace(int[] arr) {
     for(int i = 0; i < arr.length/2; i = i+ 1) {
