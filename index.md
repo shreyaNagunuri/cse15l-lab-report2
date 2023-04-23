@@ -13,3 +13,61 @@ The implementation of this method is shown in the next two screenshots where mes
 
 Part 2:
 
+In the code given as a part of lab 3, there were plenty of methods that had bugs in them. I chose to examine the reverseInPlace method in ArrayExamples.java. A failure-inducing input for the buggy program is provides in the code written below. 
+
+```json
+
+public void testReverseInPlace() {
+    int[] input1 = { 1, 2, 3 , 4, 5 };
+    ArrayExamples.reverseInPlace(input1);
+    assertArrayEquals(new int[]{ 5, 4, 3, 2, 1 }, input1);
+	}
+
+```
+
+The result of this program would be {5, 4, 3, 4, 5}. However, this code can work for certain inputs. The following code is an example:
+```json
+
+public void testReverseInPlace2() {
+    int[] input1 = {1};
+    ArrayExamples.reverseInPlace(input1);
+    assertArrayEquals(new int[]{1 }, input1);
+	}
+
+```
+The symptom, as the output of running the tests is shown in the screenshot below:
+![Image](JUnitTestOutput.png)
+
+In order to fix this problem I had to edit the method to properlly run store the entire list. The incorrect code is first provided and then the correct code is given. 
+
+```json
+
+static void reverseInPlace(int[] arr) {
+    for(int i = 0; i < arr.length; i += 1) {
+      arr[i] = arr[arr.length - i - 1];
+    }
+  }
+
+```
+
+```json
+
+static void reverseInPlace(int[] arr) {
+    for(int i = 0; i < arr.length/2; i = i+ 1) {
+        int temp = arr[i];
+        arr[i] =  arr[arr.length - i - 1];
+        arr[arr.length - i - 1] = temp;
+
+    }
+  }
+
+```
+
+The reason why the second code is correct is because the first code doesn't have a temporary holder for value and thus for later values in the array the new arr[i] is different from the index it is supposed to be accessing. Thus, the second code doesn't even iterate through those values in the for loop and instead uses an temp variable to store the element in a spot that won't get modified. 
+
+Part 3:
+I have learned a lot in the labs but one thing in particular that I didn't know before was how to create a web server. It was very interesting to see how something as common as a website was developed. I enjoyed the many methods that it look to get simple text on the screen. I also didn't know much about the different components of a url. 
+
+
+
+
